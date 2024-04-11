@@ -1,0 +1,13 @@
+.cta{
+
+    &__list{
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+    }
+
+    &__link{
+        padding: 3rem;
+        border: 1px solid black;
+    }
+}
