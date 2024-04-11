@@ -9,7 +9,7 @@ export default function HeaderNav() {
             <nav className={style["nav"]}>
                 <ul className={style["nav__list"]}>
                     <li className={style["nav__item"]}><NavLink className={style["nav__link"]} href="/quiz">Take Quiz</NavLink></li>
-                    <li className={style["nav__item"]}><NavLink className={style["nav__link"]} href="/feedbacks">Feedbacks</NavLink></li>
+                    <li className={style["nav__item"]}><NavLink className={style["nav__link"]} href="/feedback">Feedbacks</NavLink></li>
                 </ul>
             </nav>
         </header>
