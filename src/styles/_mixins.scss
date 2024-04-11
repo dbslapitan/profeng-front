@@ -1,0 +1,4 @@
+@mixin font-face($openTypeUrl, $trueTypeUrl){
+    font-family: 'Default-AvenirNext';
+    src: $openTypeUrl format('opentype'), $trueTypeUrl format('truetype');
+}
