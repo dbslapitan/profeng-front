@@ -19,7 +19,7 @@ export async function postWritingAnswer(formData: FormData) {
         prompt: formData.get("prompt")
     }
     const { status } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
-    redirect('/quiz');
+    redirect('/feedback');
 
 }
 
@@ -39,5 +39,6 @@ export async function postReadingAnswer(formData: FormData) {
         answers
     };
 
-    await axios.post(`${API}/feedback/reading/${readingId}`, body);
+    await axios.post(`${API}/api/v1/feedback/reading/`, body);
+    redirect('/feedback');
 }
