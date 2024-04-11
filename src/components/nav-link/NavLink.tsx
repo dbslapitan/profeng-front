@@ -8,8 +8,6 @@ export default function NavLink({ href, children, className }: {href: string, ch
 
     const path = usePathname();
 
-    console.log(path);
-
     return(
         <Link className={className} href={href}>{children}</Link>
     );
