@@ -1,4 +1,9 @@
 @use '../styles/typography';
+@use '../styles/mixins' as *;
+
+@include mobile-fonts;
+
+@include tablet{ @include non-mobile-fonts }
 
 *{
     box-sizing: border-box;
@@ -6,6 +11,14 @@
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 body{
     font-family: 'Default-AvenirNext';
+}
+
+ul{
+    list-style: none;
 }

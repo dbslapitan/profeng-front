@@ -2,3 +2,59 @@
     font-family: 'Default-AvenirNext';
     src: $openTypeUrl format('opentype'), $trueTypeUrl format('truetype');
 }
+
+@mixin tablet {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin mobile-fonts{
+    .page-header{
+        font-size: 1.5rem;
+        font-weight: 1.33;
+    }
+
+    .section-header{
+        font-size: 0.75rem;
+        font-weight: 1.67;
+    }
+
+    .regular{
+        font-size: 0.8125rem;
+        font-weight: 1.385;
+    }
+
+    .labels{
+        font-size: 0.625rem;
+        font-weight: 2;
+    }
+}
+
+@mixin non-mobile-fonts{
+    .page-header{
+        font-size: 2.0625rem;
+        font-weight: 1.33;
+    }
+
+    .section-header{
+        font-size: 0.75rem;
+        font-weight: 1.67;
+    }
+
+    .regular{
+        font-size: 0.875rem;
+        font-weight: 1.57;
+    }
+
+    .labels{
+        font-size: 0.75rem;
+        font-weight: 1.67;
+    }
+}
