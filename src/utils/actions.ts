@@ -22,3 +22,22 @@ export async function postWritingAnswer(formData: FormData) {
     redirect('/quiz');
 
 }
+
+export async function postReadingAnswer(formData: FormData) {
+
+    const count = formData.get("count") as string;
+    const parsed = parseInt(count);
+    const readingId = formData.get("readingId");
+    const answers = [];
+    
+    for(let i = 0; i < parsed; i++){
+        answers.push(formData.get(`question-${i}`));
+    }
+
+    const body = {
+        readingId,
+        answers
+    };
+
+    await axios.post(`${API}/feedback/reading/${readingId}`, body);
+}
