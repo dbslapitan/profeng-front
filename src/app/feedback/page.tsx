@@ -2,28 +2,46 @@ import axios from "axios";
 import style from "./feedbacks.module.scss";
 import Link from "next/link";
 import { WritingFeedback } from "@/models/writing-feedback.model";
+import { ReadingFeedback } from "@/models/reading-feedback.model";
 
 const API = process.env.API;
 
 export default async function Feedbacks() {
 
-    const { data } = await axios.get<[ WritingFeedback ]>(`${API}/api/v1/feedback`);
+    const { data: feedbacks } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback/`);
 
-    return(
+    return (
         <>
             <h1>Feedbacks</h1>
             {
-                data.map((feedback: WritingFeedback) => {
+                feedbacks.map((feedback: WritingFeedback | ReadingFeedback) => {
 
                     const segment = feedback.skill.toLowerCase();
 
-                    return(
-                        <Link key={feedback._id} href={`/feedback/${segment}/${feedback._id}`} className={style["card"]}>
-                            <p>ID: {feedback._id}</p>
-                            <p>Skill: {feedback.skill}</p>
-                            <p>Prompt: {feedback.writingId.prompt}</p>
-                        </Link>
-                    );
+                    if (feedback.skill === "Writing") {
+
+                        const writingFeedback = feedback as WritingFeedback;
+
+                        return (
+                            <Link key={writingFeedback._id} href={`/feedback/${segment}/${writingFeedback._id}`} className={style["card"]}>
+                                <p>ID: {writingFeedback._id}</p>
+                                <p>Skill: {writingFeedback.skill}</p>
+                                <p>Prompt: {writingFeedback.writingId.prompt}</p>
+                            </Link>
+                        );
+                    }
+                    else{
+
+                        const readingFeedback = feedback as ReadingFeedback;
+
+                        return (
+                            <Link key={readingFeedback._id} href={`/feedback/${segment}/${readingFeedback._id}`} className={style["card"]}>
+                                <p>ID: {readingFeedback._id}</p>
+                                <p>Skill: {readingFeedback.skill}</p>
+                                <p>Title: {readingFeedback.reading.title}</p>
+                            </Link>
+                        );
+                    }
                 })
             }
         </>

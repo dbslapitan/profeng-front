@@ -5,7 +5,7 @@ const API = process.env.API;
 
 export default async function Feedback({ params } : {params: {id: string}}) {
 
-    const { data: feedback } = await axios.get<WritingFeedback>(`${API}/api/v1/feedback/${params.id}`);
+    const { data: feedback } = await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
 
     return(
         <div>
@@ -17,23 +17,23 @@ export default async function Feedback({ params } : {params: {id: string}}) {
                 <p>Prompt: {feedback.writingId.prompt}</p>
                 <h2>Essay:</h2>
                 {
-                    feedback.essay.map(paragraph => {
-                        return <p>{paragraph}</p>;
+                    feedback.essay.map((paragraph, index) => {
+                        return <p key={index}>{paragraph}</p>;
                     })
                 }
                 <h2>Feedback:</h2>
                 <ol>
                 {
-                    feedback.feedback.map(paragraph => {
-                        return <li>{paragraph}</li>;
+                    feedback.feedback.map((paragraph, index) => {
+                        return <li key={index}>{paragraph}</li>;
                     })
                 }
                 </ol>
                 
                 <h2>Improved Version:</h2>
                 {
-                    feedback.improvedVersion.map(paragraph => {
-                        return <p>{paragraph}</p>;
+                    feedback.improvedVersion.map((paragraph, index) => {
+                        return <p key={index}>{paragraph}</p>;
                     })
                 }
             </div>

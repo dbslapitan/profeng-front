@@ -4,6 +4,7 @@ export interface ReadingTemplate{
    content: [string], 
    questions: [{
     question: string,
-    options: [string]
+    options: [string],
+    answer?: string
    }]
 }
