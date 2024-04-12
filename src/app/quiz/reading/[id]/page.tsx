@@ -6,12 +6,11 @@ const API = process.env.API;
 
 export default async function Reading({ params }: { params: { id: string } }) {
 
-    const { data } = await axios.get<ReadingTemplate>(`${API}/api/v1/reading/${params.id}`);
+        const { data } = await axios.get<ReadingTemplate>(`${API}/api/v1/reading/${params.id}`);
 
     return (
         <>
-            <h1>Reading</h1>
-            <h2>{data.title}</h2>
+            <h1>{data.title}</h1>
             {
                 data.content.map((paragraph, index) => {
                     return (
@@ -24,7 +23,7 @@ export default async function Reading({ params }: { params: { id: string } }) {
 
             <form action={postReadingAnswer}>
                 <input type="text" name="count" id="count" defaultValue={data.questions.length} hidden />
-                <input type="text" name="readingId" id="readingId" defaultValue={data._id} hidden />
+                <input type="text" name="reading" id="reading" defaultValue={data._id} hidden />
                 <ol>
                     {
                         data.questions.map((qnc, qncIndex) => {

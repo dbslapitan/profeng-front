@@ -8,7 +8,7 @@ const API = process.env.API;
 
 export default async function Feedbacks() {
 
-    const { data: feedbacks } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback/`);
+    const { data: feedbacks } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback`);
 
     return (
         <>

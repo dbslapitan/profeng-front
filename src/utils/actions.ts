@@ -18,7 +18,7 @@ export async function postWritingAnswer(formData: FormData) {
         answer: converted,
         prompt: formData.get("prompt")
     }
-    const { status } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
+    await axios.post(`${API}/api/v1/feedback/writing`, newForm);
     redirect('/feedback');
 
 }
@@ -27,7 +27,7 @@ export async function postReadingAnswer(formData: FormData) {
 
     const count = formData.get("count") as string;
     const parsed = parseInt(count);
-    const readingId = formData.get("readingId");
+    const reading = formData.get("reading");
     const answers = [];
     
     for(let i = 0; i < parsed; i++){
@@ -35,10 +35,10 @@ export async function postReadingAnswer(formData: FormData) {
     }
 
     const body = {
-        readingId,
+        reading,
         answers
     };
 
-    await axios.post(`${API}/api/v1/feedback/reading/`, body);
+    await axios.post(`${API}/api/v1/feedback/reading`, body);
     redirect('/feedback');
 }
