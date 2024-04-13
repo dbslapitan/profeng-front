@@ -10,9 +10,9 @@ export default async function Writing({ params }: {params: {id: string}}) {
     return(
         <form action={postWritingAnswer}>
             <p>{data.prompt}</p>
-            <input type="text" name="writingId" id="writingId" defaultValue={params.id} hidden/>
+            <input type="text" name="writing" id="writing" defaultValue={params.id} hidden/>
             <input type="text" name="prompt" id="promp" defaultValue={data.prompt} hidden/>
-            <textarea name="answer" id="answer"></textarea>
+            <textarea name="essay" id="essay"></textarea>
             <button>Submit</button>
         </form>
     );

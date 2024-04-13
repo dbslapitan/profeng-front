@@ -11,11 +11,11 @@ export async function navigate(route: string){
 
 export async function postWritingAnswer(formData: FormData) {
 
-    const converted = (formData.get("answer") as string).split(/[\r\n]/).filter(string => !!string);
+    const converted = (formData.get("essay") as string).split(/[\r\n]/).filter(string => !!string);
     
     const newForm = {
-        writingId: formData.get("writingId"),
-        answer: converted,
+        writing: formData.get("writing"),
+        essay: converted,
         prompt: formData.get("prompt")
     }
     await axios.post(`${API}/api/v1/feedback/writing`, newForm);
