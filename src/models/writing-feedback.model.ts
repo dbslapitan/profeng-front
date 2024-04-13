@@ -1,5 +1,5 @@
 export interface WritingFeedback{
-     writingId: {
+     writing: {
         "_id": string, 
         prompt: string
     }, 
@@ -7,5 +7,6 @@ export interface WritingFeedback{
     feedback: [string], 
     improvedVersion: [string], 
     skill: string,
-    essay: [string]
+    essay: [string],
+    createdAt: number
 }

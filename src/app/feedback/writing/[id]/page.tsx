@@ -14,7 +14,7 @@ export default async function Feedback({ params } : {params: {id: string}}) {
                 <p>Skill: { feedback.skill }</p>
             </div>
             <div>
-                <p>Prompt: {feedback.writingId.prompt}</p>
+                <p>Prompt: {feedback.writing.prompt}</p>
                 <h2>Essay:</h2>
                 {
                     feedback.essay.map((paragraph, index) => {

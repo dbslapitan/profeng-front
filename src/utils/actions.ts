@@ -18,8 +18,8 @@ export async function postWritingAnswer(formData: FormData) {
         essay: converted,
         prompt: formData.get("prompt")
     }
-    await axios.post(`${API}/api/v1/feedback/writing`, newForm);
-    redirect('/feedback');
+    const { data: id } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
+    redirect(`/feedback/writing/${id}`);
 
 }
 
@@ -39,6 +39,6 @@ export async function postReadingAnswer(formData: FormData) {
         answers
     };
 
-    await axios.post(`${API}/api/v1/feedback/reading`, body);
-    redirect('/feedback');
+    const { data: id } = await axios.post(`${API}/api/v1/feedback/reading`, body);
+    redirect(`/feedback/reading/${id}`);
 }

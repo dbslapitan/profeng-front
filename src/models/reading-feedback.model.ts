@@ -4,5 +4,6 @@ export interface ReadingFeedback{
     _id: string,
     reading: ReadingTemplate,
     answers: [string],
-    skill: string
+    skill: string,
+    createdAt: number
 }
