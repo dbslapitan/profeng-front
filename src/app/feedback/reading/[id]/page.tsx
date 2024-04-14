@@ -2,6 +2,7 @@ import { ReadingFeedback } from "@/models/reading-feedback.model";
 import axios from "axios";
 import style from "./reading-feedback.module.scss";
 import { notFound } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const API = process.env.API;
 
@@ -9,6 +10,7 @@ export default async function Reading({ params }: { params: { id: string } }) {
 
     try{
         const { data } = await axios.get<ReadingFeedback>(`${API}/api/v1/feedback/reading/${params.id}`);
+        revalidatePath("/");
         
         return (
             <section className={`${style["reading"]}`}>

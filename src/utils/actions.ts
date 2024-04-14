@@ -1,6 +1,7 @@
 'use server';
 
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const API = process.env.API;
@@ -19,6 +20,7 @@ export async function postWritingAnswer(formData: FormData) {
         prompt: formData.get("prompt")
     }
     const { data: id } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
+    revalidatePath('/');
     redirect(`/feedback/writing/${id}`);
 
 }
@@ -40,5 +42,6 @@ export async function postReadingAnswer(formData: FormData) {
     };
 
     const { data: id } = await axios.post(`${API}/api/v1/feedback/reading`, body);
+    revalidatePath('/');
     redirect(`/feedback/reading/${id}`);
 }
