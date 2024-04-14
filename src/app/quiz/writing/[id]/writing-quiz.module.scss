@@ -31,7 +31,8 @@
 
         @include width-900{
             max-width: 55rem;
-            margin-left: 0;
+            margin: auto;
+            width: 100%;
         }
     }
 
@@ -68,7 +69,7 @@
         align-self: flex-end;
 
         @include tablet{
-            margin-top: 2.5rem;
+            margin: 2.5rem auto 0;
         }
     }
 }
