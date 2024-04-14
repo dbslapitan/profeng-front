@@ -4,23 +4,15 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
-
-    @include tablet{
-        padding: 1rem 3rem 2rem;
-    }
+    padding: 1rem clamp(1rem, -0.429rem + 7.143vw, 3rem) clamp(1rem, 0.286rem + 3.571vw, 2rem);
 }
 
 .nav{
     &__list{
         display: flex;
         gap: 1rem;
-        font-size: 1.25rem;
+        font-size: clamp(1.25rem, 1.071rem + 0.893vw, 1.5rem);
         font-weight: 600;
-
-        @include tablet{
-            font-size: 1.5rem;
-        }
     }
 
     &__link{
@@ -35,11 +27,7 @@
 .logo{
     border-radius: 2rem;
     height: fit-content;
-    font-size: 1.25rem;
-
-    @include tablet{
-        font-size: 2rem;
-    }
+    font-size: clamp(1.25rem, 0.714rem + 2.679vw, 2rem);
 
     &__left{
         color: $primary;
