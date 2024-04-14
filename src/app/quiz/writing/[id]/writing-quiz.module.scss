@@ -68,6 +68,12 @@
         max-width: 300px;
         align-self: flex-end;
 
+        &:hover{
+            cursor: pointer;
+            background-color: $secondary;
+            color: #FFF;
+        }
+
         @include tablet{
             margin: 2.5rem auto 0;
         }

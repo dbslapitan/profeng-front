@@ -71,6 +71,12 @@
         font-weight: 700;
         max-width: 300px;
 
+        &:hover{
+            cursor: pointer;
+            background-color: $secondary;
+            color: #FFF;
+        }
+
         @include tablet{
             margin-top: 2.5rem;
         }

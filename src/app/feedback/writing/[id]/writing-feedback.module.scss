@@ -1,0 +1,50 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/variables' as *;
+
+.writing{
+    padding: 0 $m-side-padding 3rem;
+
+    @include tablet{
+        padding: 0 $t-side-padding 3rem;
+    }
+
+    &__prompt{
+        background-color: rgb(194, 187, 187);
+        padding: 1rem;
+        border: 1px solid #000;
+        font-size: 1rem;
+        font-weight: 400;
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+        }
+    }
+    
+    &__sub{
+        padding-top: 0.5rem;
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+            width: 100%;
+        }
+    }
+
+    &__paragraph{
+        padding:0.5rem 0 0;
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+            width: 100%;
+        }
+    }
+
+    &__essay{
+        padding-left: 1rem;
+
+        @include tablet{
+            padding-left: 1.5rem;
+        }
+    }
+}

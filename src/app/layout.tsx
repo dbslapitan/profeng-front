@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import HeaderNav from "@/components/header-nav/HeaderNav";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
     title: "Profeng",
@@ -17,7 +19,9 @@ export default function RootLayout({
             <body>
                 <HeaderNav></HeaderNav>
                 <main>
-                    {children}
+                    <Suspense fallback={<Loading />}>
+                        {children}
+                    </Suspense>
                 </main>
             </body>
         </html>
