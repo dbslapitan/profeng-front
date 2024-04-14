@@ -9,6 +9,12 @@
     }
 }
 
+@mixin width-900 {
+    @media screen and (min-width: 900px) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media screen and (min-width: 1280px) {
         @content;
@@ -22,39 +28,39 @@
     }
 
     .section-header{
-        font-size: 0.75rem;
-        font-weight: 1.67;
+        font-size: 1.125rem;
+        line-height: 1.67;
     }
 
     .regular{
-        font-size: 0.8125rem;
-        font-weight: 1.385;
+        font-size: 0.9375rem;
+        line-height: 1.385;
     }
 
     .labels{
         font-size: 0.625rem;
-        font-weight: 2;
+        line-height: 2;
     }
 }
 
 @mixin non-mobile-fonts{
     .page-header{
         font-size: 2.0625rem;
-        font-weight: 1.33;
+        line-height: 1.33;
     }
 
     .section-header{
-        font-size: 0.75rem;
-        font-weight: 1.67;
+        font-size: 1.25rem;
+        line-height: 1.67;
     }
 
     .regular{
-        font-size: 0.875rem;
-        font-weight: 1.57;
+        font-size: 1rem;
+        line-height: 1.57;
     }
 
     .labels{
         font-size: 0.75rem;
-        font-weight: 1.67;
+        line-height: 1.67;
     }
 }
