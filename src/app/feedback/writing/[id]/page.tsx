@@ -8,11 +8,7 @@ export default async function Feedback({ params } : {params: {id: string}}) {
     const { data: feedback } = await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
 
     return(
-        <div>
-            <div>
-                <p>ID: {feedback._id}</p>
-                <p>Skill: { feedback.skill }</p>
-            </div>
+        <section>
             <div>
                 <p>Prompt: {feedback.writing.prompt}</p>
                 <h2>Essay:</h2>
@@ -37,6 +33,6 @@ export default async function Feedback({ params } : {params: {id: string}}) {
                     })
                 }
             </div>
-        </div>
+        </section>
     );
 }
