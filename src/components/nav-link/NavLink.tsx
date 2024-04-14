@@ -4,11 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
-export default function NavLink({ href, children, className }: {href: string, children: ReactNode, className: string}) {
+export default function NavLink({ href, children, className, selected }: {href: string, children: ReactNode, className: string, selected: string}) {
 
     const path = usePathname();
+    console.log(href , path.startsWith(href));
 
     return(
-        <Link className={className} href={href}>{children}</Link>
+        <Link className={ `${className} ${path.startsWith(href) ? selected : '' }`} href={href}>{children}</Link>
     );
 }
