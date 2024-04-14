@@ -20,7 +20,7 @@ export async function postWritingAnswer(formData: FormData) {
         prompt: formData.get("prompt")
     }
     const { data: id } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
-    revalidatePath(`/feedback/writing/[id]`);
+    revalidatePath(`/feedback/writing/${id}`);
     redirect(`/feedback/writing/${id}`);
 
 }
@@ -42,6 +42,6 @@ export async function postReadingAnswer(formData: FormData) {
     };
 
     const { data: id } = await axios.post(`${API}/api/v1/feedback/reading`, body);
-    revalidatePath(`/feedback/reading/[id]`);
+    revalidatePath(`/feedback/reading/${id}`);
     redirect(`/feedback/reading/${id}`);
 }
