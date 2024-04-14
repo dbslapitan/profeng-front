@@ -1,5 +1,6 @@
 import { ReadingFeedback } from "@/models/reading-feedback.model";
 import axios from "axios";
+import style from "./reading-feedback.module.scss";
 
 const API = process.env.API;
 
@@ -8,29 +9,38 @@ export default async function Reading({ params }: { params: { id: string } }) {
     const { data } = await axios.get<ReadingFeedback>(`${API}/api/v1/feedback/reading/${params.id}`);
 
     return (
-        <>
-            <h1>Reading</h1>
-            <h2>{data.reading.title}</h2>
+        <section className={`${style["reading"]}`}>
+            <h1 className={`page-header ${style["reading__title"]}`}>{data.reading.title}</h1>
             {
                 data.reading.content.map((paragraph, index) => {
                     return (
-                        <p key={index}>{paragraph}</p>
+                        <p className={`regular ${style["reading__paragraph"]}`} key={index}>{paragraph}</p>
                     );
                 })
             }
 
-            <h3>Questions: </h3>
-            <ol>
+            <h2  className={`section-header ${style["question__title"]}`}>Questions: </h2>
+            <ol className={`regular ${style["question__prompts"]}`}>
                 {
                     data.reading.questions.map((qnc, qncIndex) => {
-                        return (<li key={qncIndex}>
+
+                        const isCorrect = qnc.answer === data.answers[qncIndex];
+
+                        return (
+                        <li className={`${style["question__set"]}`} key={qncIndex}>
                             <p>{qnc.question}</p>
-                            <ul>
+                            <ul className={`${style["question__choices"]}`}>
                                 {
                                     qnc.options.map((option, choiceIndex) => {
+
+                                        const isSelected = option === data.answers[qncIndex];
+                                        const checkStyle = isCorrect && isSelected ? 'question__choice--check' 
+                                        : option === data.answers[qncIndex] ? 'question__choice--wrong' 
+                                        : option === qnc.answer ? 'question__choice--correct' : '';
+
                                         return (
-                                            <li key={choiceIndex}>
-                                                {option} {option === data.answers[qncIndex] ? "correct" : "wrong"}
+                                            <li className={`${style["question__choice"]} ${ !!checkStyle ? style[checkStyle] : ''}`} key={choiceIndex}>
+                                                {option}
                                             </li>
                                         );
                                     })
@@ -43,6 +53,6 @@ export default async function Reading({ params }: { params: { id: string } }) {
                 }
             </ol>
 
-        </>
+        </section>
     );
 }

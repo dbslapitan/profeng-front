@@ -1,0 +1,116 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/variables' as *;
+
+.reading{
+    padding: 1rem $m-side-padding 3rem;
+
+    @include tablet{
+        padding: 0 $t-side-padding 3rem;
+    }
+
+    &__title{
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    &__paragraph{
+        text-align: justify;
+        padding-top: 0.25rem;
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+        }
+    }
+}
+
+.question{
+    text-align: center;
+
+    &__title{
+        margin-top: 0.5rem;
+        text-align: left;
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+        }
+    }
+
+    &__prompts{
+        text-align: left;
+        padding-left: 1rem;
+
+        @include tablet{
+            padding-left: 2rem;
+        }
+    }
+
+    &__set{
+        padding-top: 0.5rem;
+
+        @include tablet{
+        }
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+        }
+    }
+
+    &__choice{
+        width: 100%;
+        border-radius: 8px;
+        position: relative;
+        padding-right: 1rem;
+
+        &::after{
+            position: absolute;
+            right: -2rem;
+            min-height: 1rem;
+            top: -0.5rem;
+            font-size: 2rem;
+        }
+
+        &--check{
+            background-color: rgba(3, 245, 3, 0.411);
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+
+            &::after{
+                content: '\2714';
+                color: green;
+            }
+        }
+
+        &--wrong{
+            background-color: rgba(255, 0, 0, 0.438);
+            text-decoration: line-through;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            text-decoration-thickness: 2px;
+
+            &::after{
+                content: '\2718';
+                color: red;
+            }
+        }
+
+        &--correct{
+            background-color: rgba(3, 245, 3, 0.411);
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+
+        @include tablet{
+            padding-left: 1rem;
+        }
+    }
+
+    &__choices{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+}
