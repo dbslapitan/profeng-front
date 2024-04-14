@@ -19,9 +19,7 @@ export default function RootLayout({
             <body>
                 <HeaderNav></HeaderNav>
                 <main>
-                    <Suspense fallback={<Loading />}>
                         {children}
-                    </Suspense>
                 </main>
             </body>
         </html>
