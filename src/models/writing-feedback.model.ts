@@ -8,5 +8,6 @@ export interface WritingFeedback{
     improvedVersion: [string], 
     skill: string,
     essay: [string],
-    createdAt: number
+    createdAt: number,
+    status: string
 }

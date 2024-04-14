@@ -17,12 +17,22 @@
         padding: 1rem;
         border: 1px solid #000;
         font-size: 1rem;
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
+        }
     }
     
     &__title{
         padding:0.5rem 0;
         font-size: 1.5rem;
         font-weight: 600;
+
+        @include width-900{
+            max-width: 55rem;
+            margin-left: 0;
+        }
     }
 
     &__essay{
@@ -36,6 +46,11 @@
         &:focus{
             border: 2px solid $primary;
             outline: none;
+        }
+
+        @include width-900{
+            max-width: 55rem;
+            margin: auto;
         }
     }
 

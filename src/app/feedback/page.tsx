@@ -11,12 +11,13 @@ export default async function Feedbacks() {
     const { data: feedbacks } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback`);
 
     return (
-        <>
-            <h1>Feedbacks</h1>
+        <section className={`${style["feedbacks"]}`}>
+            <h1 className={`page-header ${style["feedbacks__title"]}`}>Feedbacks</h1>
             {
                 feedbacks.map((feedback: WritingFeedback | ReadingFeedback) => {
 
                     const segment = feedback.skill.toLowerCase();
+                    const statusColor = feedback.status.toLowerCase() === 'evaluated' ? 'feedback__status--green' : 'feedback__status--yellow';
 
                     if (feedback.skill === "Writing") {
 
@@ -26,11 +27,12 @@ export default async function Feedbacks() {
                         const dataString = dateTaken.toString();
 
                         return (
-                            <Link key={writingFeedback._id} href={`/feedback/${segment}/${writingFeedback._id}`} className={style["card"]}>
-                                <p>ID: {writingFeedback._id}</p>
-                                <p>Skill: {writingFeedback.skill}</p>
-                                <p>Taken On: {dataString}</p>
-                                <p>Prompt: {writingFeedback.writing.prompt}</p>
+                            <Link className={`${style["feedback"]}`} key={writingFeedback._id} href={`/feedback/${segment}/${writingFeedback._id}`}>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>ID: </span>{writingFeedback._id}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Skill: </span>{writingFeedback.skill}</p>
+                                <p className={`${style["feedback__info"]} ${style["feedback__status"]} ${style[statusColor]}`}><span className={`${style["feedback__label"]}`}>Status: </span>{writingFeedback.status}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Taken On: </span>{dataString}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Prompt: </span>{writingFeedback.writing.prompt}</p>
                             </Link>
                         );
                     }
@@ -42,16 +44,17 @@ export default async function Feedbacks() {
                         const dataString = dateTaken.toString();
 
                         return (
-                            <Link key={readingFeedback._id} href={`/feedback/${segment}/${readingFeedback._id}`} className={style["card"]}>
-                                <p>ID: {readingFeedback._id}</p>
-                                <p>Skill: {readingFeedback.skill}</p>
-                                <p>Taken On: {dataString}</p>
-                                <p>Title: {readingFeedback.reading.title}</p>
+                            <Link className={`${style["feedback"]}`} key={readingFeedback._id} href={`/feedback/${segment}/${readingFeedback._id}`}>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>ID: </span>{readingFeedback._id}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Skill: </span>{readingFeedback.skill}</p>
+                                <p className={`${style["feedback__info"]} ${style["feedback__status"]} ${style[statusColor]}`}><span className={`${style["feedback__label"]}`}>Status: </span>{readingFeedback.status}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Taken On: </span>{dataString}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Title: </span>{readingFeedback.reading.title}</p>
                             </Link>
                         );
                     }
                 })
             }
-        </>
+        </section>
     );
 }

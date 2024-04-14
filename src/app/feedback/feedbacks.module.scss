@@ -1,5 +1,60 @@
-.card{
-    padding: 1rem;
-    border: 1px solid black;
-    margin: 1rem
+@use '@/styles/mixins' as *;
+@use '@/styles/variables' as *;
+
+.feedbacks{
+    padding: 0 $m-side-padding 3rem;
+
+    @include tablet{
+        padding: 0 $t-side-padding 3rem;
+    }
+
+    &__title{
+        font-weight: 600;
+    }
 }
+
+.feedback{
+    border: 1px solid $primary;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    color: #000;
+    border-radius: 8px;
+
+    &:hover{
+        border: 2px solid $primary;
+    }
+
+    &:focus{
+        border: 2px solid $primary;
+        outline: none;
+    }
+
+    @include tablet{
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    &__info{
+        font-size: 14px;
+    }
+
+    &__label{
+        font-weight: 600;
+        color: #000;
+    }
+
+    &__status{
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #000;
+
+        &--green{
+            color: $evaluated;
+        }
+
+        &--yellow{
+            color: $pending;
+        }
+    }
+}
+
