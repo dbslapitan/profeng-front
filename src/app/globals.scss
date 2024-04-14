@@ -1,5 +1,6 @@
 @use '../styles/typography';
 @use '../styles/mixins' as *;
+@use '../styles/variables' as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
@@ -24,4 +25,34 @@ body, textarea{
 
 ul{
     list-style: none;
+}
+
+.loading{
+    justify-content: center;
+    padding-top: 8rem;
+    text-align: center;
+
+    @include tablet{
+        padding-top: 15rem;
+    
+    }
+
+    &__display{
+        animation: load 1s  infinite linear;
+        border: 10px solid $secondary;
+        border-radius: 50%;
+        border-top: 10px solid $primary;
+        display: inline-block;
+        height: 7rem;
+        width: 7rem;
+    }
+}
+
+@keyframes load {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
