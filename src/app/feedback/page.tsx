@@ -1,14 +1,25 @@
+'use client';
+
 import axios from "axios";
 import style from "./feedbacks.module.scss";
 import Link from "next/link";
 import { WritingFeedback } from "@/models/writing-feedback.model";
 import { ReadingFeedback } from "@/models/reading-feedback.model";
+import { useEffect, useState } from "react";
 
-const API = process.env.API;
+const API = process.env.NEXT_PUBLIC_API;
 
-export default async function Feedbacks() {
+export default function Feedbacks() {
 
-    const { data: feedbacks } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback`);
+    const array: (WritingFeedback | ReadingFeedback)[] = [];
+    const [feedbacks, setFeedbacks] = useState(array);
+
+    useEffect(() => {
+        (async() => {
+            const { data } = await axios.get<[WritingFeedback | ReadingFeedback]>(`${API}/api/v1/feedback`);
+            setFeedbacks(data);
+        })();
+    }, []);
 
     return (
         <section className={`${style["feedbacks"]}`}>
@@ -16,14 +27,14 @@ export default async function Feedbacks() {
             {
                 feedbacks.map((feedback: WritingFeedback | ReadingFeedback) => {
 
-                    const segment = feedback.skill.toLowerCase();
-                    const statusColor = feedback.status.toLowerCase() === 'evaluated' ? 'feedback__status--green' : 'feedback__status--yellow';
+                    const segment = feedback.skill!.toLowerCase();
+                    const statusColor = feedback.status!.toLowerCase() === 'evaluated' ? 'feedback__status--green' : 'feedback__status--yellow';
 
                     if (feedback.skill === "Writing") {
 
                         const writingFeedback = feedback as WritingFeedback;
 
-                        const dateTaken = new Date(feedback.createdAt);
+                        const dateTaken = new Date(feedback.createdAt!);
                         const dataString = dateTaken.toString();
 
                         return (
@@ -40,7 +51,7 @@ export default async function Feedbacks() {
 
                         const readingFeedback = feedback as ReadingFeedback;
 
-                        const dateTaken = new Date(feedback.createdAt);
+                        const dateTaken = new Date(feedback.createdAt!);
                         const dataString = dateTaken.toString();
 
                         return (
@@ -49,7 +60,7 @@ export default async function Feedbacks() {
                                 <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Skill: </span>{readingFeedback.skill}</p>
                                 <p className={`${style["feedback__info"]} ${style["feedback__status"]} ${style[statusColor]}`}><span className={`${style["feedback__label"]}`}>Status: </span>{readingFeedback.status}</p>
                                 <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Taken On: </span>{dataString}</p>
-                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Title: </span>{readingFeedback.reading.title}</p>
+                                <p className={`${style["feedback__info"]}`}><span className={`${style["feedback__label"]}`}>Title: </span>{readingFeedback.reading!.title}</p>
                             </Link>
                         );
                     }

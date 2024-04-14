@@ -19,7 +19,9 @@ export default function RootLayout({
             <body>
                 <HeaderNav></HeaderNav>
                 <main>
+                    <Suspense>
                         {children}
+                    </Suspense>
                 </main>
             </body>
         </html>
