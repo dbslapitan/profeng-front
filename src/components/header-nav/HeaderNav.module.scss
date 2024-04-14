@@ -4,13 +4,19 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 1rem clamp(1rem, -0.429rem + 7.143vw, 3rem) clamp(1rem, 0.286rem + 3.571vw, 2rem);
+    padding: 1rem $m-side-padding clamp(1rem, 0.286rem + 3.571vw, 2rem);
+
+    @include tablet{
+        padding-right: $t-side-padding;
+        padding-left: $t-side-padding;
+        padding-top: clamp(1rem, -0.505rem + 3.131vw, 2rem);
+    }
 }
 
 .nav{
     &__list{
         display: flex;
-        gap: 1rem;
+        gap: clamp(0.5rem, 0.143rem + 1.786vw, 1rem);
         font-size: clamp(1.25rem, 1.071rem + 0.893vw, 1.5rem);
         font-weight: 600;
     }

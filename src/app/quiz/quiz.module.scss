@@ -1,12 +1,50 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
 .cta{
 
     &__list{
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        gap: 5rem;
+        gap: 1.5rem;
+        padding: 3rem clamp(1rem, -0.429rem + 7.143vw, 3rem) 0;
+
+        @include tablet{
+            padding-left: clamp(3rem, -4.524rem + 15.656vw, 10rem);
+            padding-right: clamp(3rem, -4.524rem + 15.656vw, 10rem);
+        }
+
+        @include desktop{
+            flex-direction: row;
+        }
     }
 
     &__link{
-        padding: 3rem;
+        font-size: clamp(2.5rem, 1.786rem + 3.571vw, 3.5rem);
+        padding: 5rem 0;
         border: 1px solid black;
+        width: 100%;
+        font-weight: 600;
+        background-color: #FFF;
+        border: 2px solid $primary;
+        color: $primary;
+        border-radius: 16px;
+
+        &:hover{
+            cursor: pointer;
+            color: #FFF;
+            background-color: $secondary;
+            font-style: italic;
+            text-decoration: underline;
+        }
+
+        @include desktop{
+            padding: 8rem 0;
+        }
+    }
+
+    &__item{
+        width: 100%;
     }
 }

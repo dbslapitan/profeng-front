@@ -3,3 +3,8 @@ $demi: 600;
 $bold: 700;
 
 $primary: #bd38bb;
+$secondary: #e28de1;
+
+
+$m-side-padding: clamp(1rem, -0.429rem + 7.143vw, 3rem);
+$t-side-padding: clamp(3rem, -4.524rem + 15.656vw, 10rem);
