@@ -1,0 +1,59 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.writing{
+    padding: 2rem $m-side-padding;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - clamp(4.125rem, 2.786rem + 6.696vw, 6rem));
+
+    @include tablet{
+        padding: 1rem $t-side-padding 3rem;
+        height: calc(100vh - clamp(6rem, 4.495rem + 3.131vw, 7rem));
+    }
+
+    &__prompt{
+        background-color: rgb(194, 187, 187);
+        padding: 1rem;
+        border: 1px solid #000;
+        font-size: 1rem;
+    }
+    
+    &__title{
+        padding:0.5rem 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &__essay{
+        width: 100%;
+        border: 1px solid $primary;
+        border-radius: 8px;
+        flex-grow: 1;
+        padding: 0.5rem;
+        caret-color: $primary;
+
+        &:focus{
+            border: 2px solid $primary;
+            outline: none;
+        }
+    }
+
+    &__submit{
+        width: 100%;
+        background-color: #FFF;
+        border: 2px solid $primary;
+        border-radius: 8px;
+        padding: 0.75rem 0;
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+        color: $primary;
+        font-weight: 700;
+        max-width: 300px;
+        align-self: flex-end;
+
+        @include tablet{
+            margin-top: 2.5rem;
+        }
+    }
+}

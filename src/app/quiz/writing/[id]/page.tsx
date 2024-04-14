@@ -1,5 +1,6 @@
 import { postWritingAnswer } from "@/utils/actions";
 import axios from "axios";
+import style from "./writing-quiz.module.scss";
 
 const API = process.env.API;
 
@@ -8,12 +9,13 @@ export default async function Writing({ params }: {params: {id: string}}) {
     const {data} = await axios.get(`${API}/api/v1/writing/${params.id}`);
 
     return(
-        <form action={postWritingAnswer}>
-            <p>{data.prompt}</p>
+        <form className={`${style["writing"]}`} action={postWritingAnswer}>
+            <p className={`${style["writing__prompt"]}`}>{data.prompt}</p>
             <input type="text" name="writing" id="writing" defaultValue={params.id} hidden/>
             <input type="text" name="prompt" id="promp" defaultValue={data.prompt} hidden/>
-            <textarea name="essay" id="essay"></textarea>
-            <button>Submit</button>
+            <h1 className={`${style["writing__title"]}`}>Essay</h1>
+            <textarea className={`${style["writing__essay"]}`} name="essay" id="essay"></textarea>
+            <button className={`${style["writing__submit"]}`}>Submit</button>
         </form>
     );
 }
