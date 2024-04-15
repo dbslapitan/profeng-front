@@ -3,6 +3,7 @@
 import axios from "axios";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { unstable_noStore as noStore } from "next/cache";
 
 const API = process.env.API;
 
@@ -11,6 +12,7 @@ export async function navigate(route: string){
 }
 
 export async function postWritingAnswer(formData: FormData) {
+    noStore();
 
     const converted = (formData.get("essay") as string).split(/[\r\n]/).filter(string => !!string);
     
@@ -26,6 +28,7 @@ export async function postWritingAnswer(formData: FormData) {
 }
 
 export async function postReadingAnswer(formData: FormData) {
+    noStore();
 
     const count = formData.get("count") as string;
     const parsed = parseInt(count);
