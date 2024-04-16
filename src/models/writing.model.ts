@@ -1,4 +1,4 @@
 export interface Writing{
-    "_id": string, 
-    prompt: string
+    "_id"?: string, 
+    prompt?: string
 }

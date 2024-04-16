@@ -1,8 +1,7 @@
 import { WritingFeedback } from "@/models/writing-feedback.model";
 import axios from "axios";
 import style from "./writing-feedback.module.scss";
-import { notFound, redirect } from "next/navigation";
-import { revalidatePath, unstable_noStore } from "next/cache";
+import { notFound } from "next/navigation";
 
 const API = process.env.API;
 

@@ -11,7 +11,7 @@ export async function navigate(route: string){
     redirect(route);
 }
 
-export async function postWritingAnswer(formData: FormData) {
+export async function postWritingAnswer(prevState: any, formData: FormData) {
 
     const converted = (formData.get("essay") as string).split(/[\r\n]/).filter(string => !!string);
     
@@ -20,6 +20,12 @@ export async function postWritingAnswer(formData: FormData) {
         essay: converted,
         prompt: formData.get("prompt")
     }
+
+if(!newForm.essay.length){
+    console.log("ere")
+    return {writing: 'Cannot be empty'};
+}
+
     const { data: id } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
     revalidatePath(`/feedback/writing/[id]`, "page");
     redirect(`/feedback/writing/${id}`);
