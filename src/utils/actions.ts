@@ -32,22 +32,30 @@ if(!newForm.essay.length){
 
 }
 
-export async function postReadingAnswer(formData: FormData) {
+export async function postReadingAnswer(prevState: any, formData: FormData) {
     noStore();
 
     const count = formData.get("count") as string;
     const parsed = parseInt(count);
     const reading = formData.get("reading");
     const answers = [];
+    const errors = [];
     
     for(let i = 0; i < parsed; i++){
         answers.push(formData.get(`question-${i}`));
+        if(!formData.get(`question-${i}`)){
+            errors.push(i);
+        }
     }
 
     const body = {
         reading,
         answers
     };
+
+    if(errors.length){
+        return {errors};
+    }
 
     const { data: id } = await axios.post(`${API}/api/v1/feedback/reading`, body);
     revalidatePath(`/feedback/reading/[id]`, "page");
