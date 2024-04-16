@@ -21,7 +21,6 @@ export default function Writing() {
         (async() => {
             try{
                 const response = await axios.get(`${API}/api/v1/writing/${id}`);
-                console.log(response.data)
                 setData(response.data);
             }
             catch(error){

@@ -17,7 +17,6 @@ export default function Reading() {
     const [actionResponse, formAction] = useFormState(postReadingAnswer, null);
 
     const { id } = useParams();
-        // const { data } = await axios.get<ReadingTemplate>(`${API}/api/v1/reading/${params.id}`);
     const [data, setData] = useState<ReadingTemplate | null>(null);
 
         useEffect(() => {

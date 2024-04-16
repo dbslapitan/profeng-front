@@ -19,9 +19,13 @@
     padding: 0.5rem;
     color: #000;
     border-radius: 8px;
+    width: 100%;
+    background-color: #FFF;
+    text-align: left;
 
     &:hover{
         border: 2px solid $primary;
+        cursor: pointer;
     }
 
     &:focus{

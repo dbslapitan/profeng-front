@@ -21,10 +21,9 @@ export async function postWritingAnswer(prevState: any, formData: FormData) {
         prompt: formData.get("prompt")
     }
 
-if(!newForm.essay.length){
-    console.log("ere")
-    return {writing: 'Cannot be empty'};
-}
+    if(!newForm.essay.length){
+        return {writing: 'Cannot be empty'};
+    }
 
     const { data: id } = await axios.post(`${API}/api/v1/feedback/writing`, newForm);
     revalidatePath(`/feedback/writing/[id]`, "page");
