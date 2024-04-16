@@ -7,9 +7,10 @@ import { revalidatePath, unstable_noStore } from "next/cache";
 const API = process.env.API;
 
 export default async function Feedback({ params } : {params: {id: string}}) {
-    unstable_noStore();
 
     try{
+        console.log(`${API}/api/v1/feedback/writing/${params.id}`);
+        await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
         const { data: feedback, status } = await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
         
         return(

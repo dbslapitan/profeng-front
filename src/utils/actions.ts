@@ -12,7 +12,6 @@ export async function navigate(route: string){
 }
 
 export async function postWritingAnswer(formData: FormData) {
-    noStore();
 
     const converted = (formData.get("essay") as string).split(/[\r\n]/).filter(string => !!string);
     
