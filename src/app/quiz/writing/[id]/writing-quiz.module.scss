@@ -78,4 +78,14 @@
             margin: 2.5rem auto 0;
         }
     }
+
+    &__error{
+        display: none;
+        color: red;
+        padding-left: 2rem;
+
+        &--show{
+            display: block;
+        }
+    }
 }

@@ -2,18 +2,18 @@ import { WritingFeedback } from "@/models/writing-feedback.model";
 import axios from "axios";
 import style from "./writing-feedback.module.scss";
 import { notFound, redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 const API = process.env.API;
 
 export default async function Feedback({ params } : {params: {id: string}}) {
 
     try{
+        await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
         const { data: feedback, status } = await axios.get<WritingFeedback>(`${API}/api/v1/feedback/writing/${params.id}`);
         
         return(
             <section className={`${style["writing"]}`}>
-                <h1 className={`${style["writing__prompt"]}`}>{feedback.writing.prompt}</h1>
+                <h1 className={`${style["writing__prompt"]}`}>{feedback.writing?.prompt}</h1>
                 <h2 className={`section-header ${style["writing__sub"]}`}>Essay:</h2>
                 {
                     feedback.essay.map((paragraph, index) => {
@@ -39,7 +39,8 @@ export default async function Feedback({ params } : {params: {id: string}}) {
         );
     }
     catch(error){
-        notFound();
+        console.log(error);
+        redirect('/feedback');
     }
 
     
